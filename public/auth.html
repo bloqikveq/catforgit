@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Авторизация / Регистрация</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .auth-container { max-width:400px; margin:40px auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .tabs { display:flex; }
+    .tabs button { flex:1; padding:10px; cursor:pointer; background:#eee; border:none; }
+    .tabs button.active { background:#ddd; font-weight:bold; }
+    .auth-form { display:none; }
+    .auth-form.active { display:block; }
+    .auth-form label { display:block; margin:10px 0 5px; }
+    .auth-form input { width:100%; padding:8px; }
+    .auth-form button { margin-top:15px; padding:10px 20px; }
+    .auth-message { color:red; margin-top:10px; }
+    .forgot-link { display:block; margin:10px 0; font-size:0.9em; text-decoration:none; color:#0077cc; }
+    .forgot-link:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">🐾 КотоМемМаркет</a>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="meme.html">Мемы</a>
+      <a href="random.html">Случайные гифки</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="auth-container">
+      <div class="tabs">
+        <button id="showLogin" class="active">Войти</button>
+        <button id="showRegister">Регистрация</button>
+      </div>
+
+      <!-- Форма входа -->
+      <form id="loginForm" class="auth-form active">
+        <h2>Вход</h2>
+        <label for="loginEmail">Электронная почта:</label>
+        <input type="email" id="loginEmail" required>
+
+        <label for="loginPassword">Пароль:</label>
+        <input type="password" id="loginPassword" required>
+
+        <a href="reset.html" class="forgot-link">Забыли пароль?</a>
+        <button type="submit">Войти</button>
+      </form>
+
+      <!-- Форма регистрации -->
+      <form id="registerForm" class="auth-form">
+        <h2>Регистрация</h2>
+        <label for="registerEmail">Электронная почта:</label>
+        <input type="email" id="registerEmail" required>
+
+        <label for="registerPassword">Пароль:</label>
+        <input type="password" id="registerPassword" required>
+
+        <label for="registerPassword2">Повторите пароль:</label>
+        <input type="password" id="registerPassword2" required>
+
+        <button type="submit">Зарегистрироваться</button>
+      </form>
+
+      <div id="authMessage" class="auth-message"></div>
+    </div>
+  </main>
+
+  <button id="toTop" title="Наверх">↑</button>
+
+  <script src="js/scroll.js"></script>
+  <script defer src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Сброс пароля</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    main { max-width: 400px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    form label { display: block; margin: 10px 0; }
+    form input { width: 100%; padding: 8px; }
+    form button { margin-top: 15px; padding: 10px 20px; }
+    .back-link { display: inline-block; margin-top: 20px; text-decoration: none; color: #0077cc; }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Сброс пароля</h1>
+    <form id="resetForm">
+      <label>
+        Ваш e-mail:
+        <input type="email" id="resetEmail" required>
+      </label>
+      <label>
+        Новый пароль:
+        <input type="password" id="resetPassword" required>
+      </label>
+      <button type="submit">Сменить пароль</button>
+    </form>
+    <p id="resetMsg"></p>
+
+    <button onclick="location.href='auth.html'" style="margin-top:20px;padding:8px 16px;">
+        ← Назад к входу
+      </button>      
+  </main>
+
+  <script>
+  document.getElementById('resetForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = document.getElementById('resetEmail').value.trim();
+    const newPassword = document.getElementById('resetPassword').value;
+    const msg = document.getElementById('resetMsg');
+    try {
+      const res = await fetch('http://localhost:4000/api/reset-password', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ email, newPassword })
+      });
+      if (res.ok) {
+        msg.textContent = 'Пароль успешно изменён!';
+      } else {
+        msg.textContent = await res.text();
+      }
+    } catch (err) {
+      console.error(err);
+      msg.textContent = 'Ошибка, попробуйте позже.';
+    }
+  });
+  </script>
+</body>
+</html>
+

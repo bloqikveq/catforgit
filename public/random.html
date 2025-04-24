@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Случайные кото-гифки</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🐾 КотоМемМаркет</a>
+    <nav>
+      <a href="index.html" id="link-home">Главная</a>
+      <a href="meme.html" id="link-memes">Мемы</a>
+      <a href="random.html" id="link-random">Случайные гифки</a>
+      <a href="contacts.html" id="link-contacts">Контакты</a>
+      <span id="nav-auth"></span>
+    </nav>
+  </header>
+  <main>
+    <section class="random-meme">
+      <h1>Случайная кото-гифка</h1>
+      <!-- вот здесь меняем id на randomMeme -->
+      <button id="randomMeme">Загрузить мем</button>
+    
+      <!-- не забудьте закрыть div -->
+      <div class="random-meme-container" id="memeContainer"></div>
+    </section>
+  </main>
+  <button id="toTop" title="Наверх">↑</button>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/scroll.js"></script>
+  <script defer src="js/api.js"></script>
+</body>
+</html>

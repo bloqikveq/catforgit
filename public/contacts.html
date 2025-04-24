@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🐾 КотоМемМаркет</a>
+    <nav>
+      <a href="index.html" id="link-home">Главная</a>
+      <a href="meme.html" id="link-memes">Мемы</a>
+      <a href="random.html" id="link-random">Случайные гифки</a>
+      <a href="contacts.html" id="link-contacts">Контакты</a>
+      <span id="nav-auth"></span>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contacts">
+      <h2>Контакты</h2>
+      <p><strong>Телефон:</strong> +7 (000) 555-55-55</p>
+      <p><strong>Email:</strong> boom.rox@mail.ru</p>
+      <p><strong>Адрес:</strong> 190005, г. Санкт-Петербург, ул. 1-я Красноармейская, д. 1</p>
+      <p><strong>Слоган:</strong> «Поставьте зачет, умоляю!»</p>
+      <!-- Контейнер карты с заданной высотой -->
+      <div id="map" style="height:300px;"></div>
+      <!-- Leaflet JS -->
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      <!-- Ваш скрипт инициализации карты -->
+      <script defer src="js/api.js"></script>
+    </section>
+  </main>
+
+  <button id="toTop" title="Наверх">↑</button>
+  <script src="js/scroll.js"></script>
+</body>
+</html>
+
+

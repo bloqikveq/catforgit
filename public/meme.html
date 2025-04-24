@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Мемы с котами — Подробности</title>
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <script defer src="js/main.js"></script>
+  <script defer src="js/vote.js"></script>
+  <script defer src="js/smoothScroll.js"></script>
+  <script defer src="js/scroll.js"></script>
+  <script defer src="js/comment.js"></script>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">🐾 КотоМемМаркет</a>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="meme.html">Мемы</a>
+      <a href="random.html">Случайные гифки</a>
+      <a href="contacts.html">Контакты</a>
+      <span id="nav-auth"></span>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">Выбери своего бойца!</h1>
+
+    <aside class="meme-nav">
+      <ul>
+        <li><a href="#luna">Luna</a></li>
+        <li><a href="#floppa">Floppa</a></li>
+        <li><a href="#smiling">Smiling Cat</a></li>
+        <li><a href="#oiia">Oiia Cat</a></li>
+        <li><a href="#wiwiwi">WiWiWi Cat</a></li>
+        <li><a href="#stress">AAAAA STRESSS!</a></li>
+        <li><a href="#chipichapa">Chipi Chapa Cat</a></li>
+        <li><a href="#popcat">Pop Cat</a></li>
+        <li><a href="#vibingcat">Cat Jam</a></li>
+        <li><a href="#maxwellcat">Maxwell Cat</a></li>
+        <li><a href="#keyboardcat">Keyboard Cat</a></li>
+      </ul>
+    </aside>
+
+    <!-- SECTION TEMPLATE -->
+    <!-- Просто скопируйте и поменяйте id, src, alt, заголовки и тексты -->
+
+    <!-- 1. Luna -->
+    <section id="luna" class="meme-detail">
+      <h2>Crunchy Cat Luna</h2>
+      <div class="img-container">
+        <img src="img/luna.gif" alt="Crunchy Cat Luna"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Луна</p>
+        <p><strong>История:</strong> Мем с кошкой, ставшей вирусной в TikTok в начале 2023 года благодаря своему громкому «хрусту» корма.</p>
+        <p><strong>Пик популярности:</strong> весна 2023.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=HMTKMWHLbdQ" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="luna">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="luna">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 2. Floppa -->
+    <section id="floppa" class="meme-detail">
+      <h2>Big Floppa</h2>
+      <div class="img-container">
+        <img src="img/floppa.jpg" alt="Big Floppa"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Гоша</p>
+        <p><strong>История:</strong> Мем с каракалом, ставшим вирусным в 2020 году благодаря расслабленным позам и выражению морды.</p>
+        <p><strong>Пик популярности:</strong> осень 2020.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=ziv2jt6zXK0" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="floppa">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="floppa">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 3. Smiling Cat -->
+    <section id="smiling" class="meme-detail">
+      <h2>Smiling Cat</h2>
+      <div class="img-container">
+        <img src="img/smiling.jpg" alt="Smiling Cat"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Ollie</p>
+        <p><strong>История:</strong> Кот с Photoshop-улыбкой, символ фальшивой радости.</p>
+        <p><strong>Пик популярности:</strong> зима 2021.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/shorts/mZT4FaskqXU" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="smiling">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="smiling">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 4. Oiia Cat -->
+    <section id="oiia" class="meme-detail">
+      <h2>Oiia Cat</h2>
+      <div class="img-container">
+        <img src="img/oiia.gif" alt="Oiia Cat"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Ethel</p>
+        <p><strong>История:</strong> Вращающийся кот под «oiia oiia», вирус 2023–24.</p>
+        <p><strong>Пик популярности:</strong> лето 2023.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=IxX_QHay02M" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="oiia">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="oiia">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 5. WiWiWi Cat -->
+    <section id="wiwiwi" class="meme-detail">
+      <h2>WiWiWi Cat</h2>
+      <div class="img-container">
+        <img src="img/wiwiwi.gif" alt="WiWiWi Cat"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Pepe</p>
+        <p><strong>История:</strong> Котёнок, «ви-ви-ви» при поедании корма.</p>
+        <p><strong>Пик популярности:</strong> январь 2024.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/shorts/9A_yx9VzkYs" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="wiwiwi">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="wiwiwi">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 6. AAAAA STRESSS! -->
+    <section id="stress" class="meme-detail">
+      <h2>AAAAA STRESSS!</h2>
+      <div class="img-container">
+        <img src="img/stress.gif" alt="AAAAA STRESSS!"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> N/A</p>
+        <p><strong>История:</strong> Котёнок, схватившийся за голову — символ стресса.</p>
+        <p><strong>Пик популярности:</strong> 2019–2020.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=CxAPNWYyMd8" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="stress">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="stress">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 7. Chipi Chapa Cat -->
+    <section id="chipichapa" class="meme-detail">
+      <h2>Chipi Chapa Cat</h2>
+      <div class="img-container">
+        <img src="img/chipichapa.gif" alt="Chipi Chapa Cat"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> CHIPI CHIPI CHAPA…</p>
+        <p><strong>История:</strong> Кот, ставший мемом в TikTok весной 2024.</p>
+        <p><strong>Пик популярности:</strong> весна 2024.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=_e9yMqmXWo0" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="chipichapa">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="chipichapa">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 8. Pop Cat -->
+    <section id="popcat" class="meme-detail">
+      <h2>Pop Cat</h2>
+      <div class="img-container">
+        <img src="img/popcat.gif" alt="Pop Cat"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Oatmeal</p>
+        <p><strong>История:</strong> Мем с открывающейся пастью, 2020.</p>
+        <p><strong>Пик популярности:</strong> 2020.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=FfxlWKiNOfU" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="popcat">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="popcat">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 9. Cat Jam (Vibing Cat) -->
+    <section id="vibingcat" class="meme-detail">
+      <h2>Cat Jam</h2>
+      <div class="img-container">
+        <img src="img/vibingcat.gif" alt="Cat Jam"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Minette</p>
+        <p><strong>История:</strong> Кот, качающий головой под бит, 2019–20.</p>
+        <p><strong>Пик популярности:</strong> 2020.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=TUxYTdlcUMw" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="vibingcat">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="vibingcat">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 10. Maxwell Cat -->
+    <section id="maxwellcat" class="meme-detail">
+      <h2>Maxwell Cat</h2>
+      <div class="img-container">
+        <img src="img/maxwellcat.gif" alt="Maxwell Cat"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Джесс</p>
+        <p><strong>История:</strong> Танцующий таксидиот из Garry’s Mod, осень 2022.</p>
+        <p><strong>Пик популярности:</strong> осень 2022.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=U2Fjfqm-7g8" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="maxwellcat">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="maxwellcat">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 11. Keyboard Cat -->
+    <section id="keyboardcat" class="meme-detail">
+      <h2>Keyboard Cat</h2>
+      <div class="img-container">
+        <img src="img/keyboardcat.gif" alt="Keyboard Cat"/>
+      </div>
+      <details class="meme-info">
+        <summary>Подробнее</summary>
+        <p><strong>Имя кота:</strong> Fatso</p>
+        <p><strong>История:</strong> Синтезатор 1984 года + мем 2009–11 «Play him off».</p>
+        <p><strong>Пик популярности:</strong> 2009–2011.</p>
+        <p><strong>Видео:</strong> <a href="https://www.youtube.com/watch?v=J---aiyznGQ" target="_blank">YouTube</a></p>
+      </details>
+      <form class="voteForm" data-id="keyboardcat">
+        <label>Ваша оценка:
+          <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </label>
+        <button type="submit">Отправить оценку</button>
+      </form>
+      <div class="comments-block">
+        <h3>Комментарии</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form" data-meme-id="keyboardcat">
+          <textarea placeholder="Ваш комментарий..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <button id="toTop" title="Наверх">↑</button>
+</body>
+</html>

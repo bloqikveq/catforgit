@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Профиль — КотоМемМаркет</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .profile-container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .profile-container h1 {
+      margin-bottom: 20px;
+    }
+    .profile-container p {
+      margin-bottom: 15px;
+    }
+    #change-password-section label {
+      display: block;
+      margin: 10px 0;
+    }
+    #change-password-section input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+    }
+    #change-password-section button {
+      margin-top: 15px;
+      padding: 10px 20px;
+    }
+    #changePwdMsg {
+      margin-top: 15px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">🐾 КотоМемМаркет</a>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="meme.html">Мемы</a>
+      <a href="random.html">Случайные гифки</a>
+      <a href="contacts.html">Контакты</a>
+      <span id="nav-auth"></span>
+    </nav>
+  </header>
+
+  <main class="profile-container">
+    <h1>Ваш профиль</h1>
+    <p><strong>Email:</strong> <span id="user-email"></span></p>
+
+    <section id="change-password-section">
+      <h2>Сменить пароль</h2>
+      <form id="changePwdForm">
+        <label>
+          Старый пароль:
+          <input type="password" id="oldPwd" required>
+        </label>
+        <label>
+          Новый пароль:
+          <input type="password" id="newPwd" required>
+        </label>
+        <button type="submit">Сменить</button>
+      </form>
+      <p id="changePwdMsg"></p>
+    </section>
+  </main>
+
+  <button id="toTop" title="Наверх">↑</button>
+
+  <script defer src="js/main.js"></script>
+  <script defer src="js/profile.js"></script>
+</body>
+</html>
+

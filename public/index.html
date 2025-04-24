@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>КотоМемМаркет — Главная</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+  <script defer src="js/comment.js"></script>
+  <script defer src="js/vote.js"></script>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🐾 КотоМемМаркет</a>
+    <nav>
+      <a href="index.html" id="link-home">Главная</a>
+      <a href="meme.html"    id="link-memes">Мемы</a>
+      <a href="random.html"  id="link-random">Случайные гифки</a>
+      <a href="contacts.html" id="link-contacts">Контакты</a>
+      <!-- Вот сюда main.js будет вставлять "Войти" или "<email> + Выйти" -->
+      <span id="nav-auth"></span>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Топ-5 мемов -->
+    <section class="top-memes">
+      <h2>Топ-5 мемов</h2>
+      <div class="memes-grid" id="topList">
+        <!-- Заполняется js/vote.js через GET /api/top5 -->
+      </div>
+    </section>
+
+    <!-- Глобальные комментарии -->
+    <section id="comments-section" class="comments-block">
+      <h2>Комментарии ко всем мемам</h2>
+      <div class="comment-list" id="commentList">
+        <!-- Заполняется js/comment.js через GET /api/comments -->
+      </div>
+      <form id="commentForm"
+            class="comment-form"
+            data-meme-id="">
+        <textarea id="commentText"
+                  placeholder="Ваш комментарий..."
+                  required></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <button id="toTop" title="Наверх">↑</button>
+  <script src="js/scroll.js"></script>
+</body>
+</html>
