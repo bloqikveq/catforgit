@@ -13,7 +13,7 @@ const app    = express();
 const pool   = new Pool({ connectionString: process.env.DATABASE_URL });
 const SECRET = process.env.JWT_SECRET || 'секрет_по_умолчанию';
 
-// --- middlewares ---
+// middlewares
 app.use(cors());
 app.use(express.json());
 
@@ -29,10 +29,10 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// --- API routes ---
+// маршруты API
 const api = express.Router();
 
-// 1) Регистрация
+// — регистрация
 api.post('/register', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -49,7 +49,7 @@ api.post('/register', async (req, res) => {
   }
 });
 
-// 2) Вход и выдача JWT
+// — логин
 api.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -59,9 +59,8 @@ api.post('/login', async (req, res) => {
     );
     if (!rows.length) return res.status(404).send('Пользователь не найден');
     const user = rows[0];
-    if (!(await bcrypt.compare(password, user.password_hash))) {
+    if (!(await bcrypt.compare(password, user.password_hash)))
       return res.status(401).send('Неверный пароль');
-    }
     const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: '12h' });
     res.json({ token });
   } catch (e) {
@@ -70,7 +69,7 @@ api.post('/login', async (req, res) => {
   }
 });
 
-// 3) Профиль залогиненного пользователя
+// — профиль
 api.get('/profile', authenticateToken, async (req, res) => {
   try {
     const { rows } = await pool.query(
@@ -85,7 +84,7 @@ api.get('/profile', authenticateToken, async (req, res) => {
   }
 });
 
-// 4) Топ-5 мемов
+// — топ-5 мемов
 api.get('/top5', async (req, res) => {
   try {
     const { rows } = await pool.query(`
@@ -102,7 +101,7 @@ api.get('/top5', async (req, res) => {
   }
 });
 
-// 5) Голосование
+// — голосование
 api.post('/vote', authenticateToken, async (req, res) => {
   const { meme_id, rating } = req.body;
   try {
@@ -117,7 +116,7 @@ api.post('/vote', authenticateToken, async (req, res) => {
   }
 });
 
-// 6) Все комментарии (главная)
+// — все комментарии
 api.get('/comments', async (req, res) => {
   try {
     const { rows } = await pool.query(`
@@ -133,7 +132,7 @@ api.get('/comments', async (req, res) => {
   }
 });
 
-// 7) Комментарии к конкретному мему
+// — комментарии к конкретному мему
 api.get('/comments/:memeId', async (req, res) => {
   const { memeId } = req.params;
   try {
@@ -151,7 +150,7 @@ api.get('/comments/:memeId', async (req, res) => {
   }
 });
 
-// 8) Добавить комментарий
+// — добавить комментарий
 api.post('/comments', authenticateToken, async (req, res) => {
   const { meme_id, content } = req.body;
   try {
@@ -166,7 +165,7 @@ api.post('/comments', authenticateToken, async (req, res) => {
   }
 });
 
-// 9) Прямой сброс пароля
+// — сброс пароля (быстрый)
 api.post('/reset-password', async (req, res) => {
   const { email, newPassword } = req.body;
   if (!email || !newPassword) return res.status(400).send('Укажите email и новый пароль');
@@ -182,16 +181,15 @@ api.post('/reset-password', async (req, res) => {
   }
 });
 
-// 10) Смена пароля залогиненным пользователем
+// — смена пароля залогиненным
 api.post('/change-password', authenticateToken, async (req, res) => {
   const { oldPassword, newPassword } = req.body;
   if (!oldPassword || !newPassword) return res.status(400).send('Укажите старый и новый пароли');
   try {
     const { rows } = await pool.query('SELECT password_hash FROM users WHERE id=$1', [req.userId]);
     if (!rows.length) return res.status(404).send('Пользователь не найден');
-    if (!(await bcrypt.compare(oldPassword, rows[0].password_hash))) {
+    if (!(await bcrypt.compare(oldPassword, rows[0].password_hash)))
       return res.status(401).send('Старый пароль неверен');
-    }
     const newHash = await bcrypt.hash(newPassword, 10);
     await pool.query('UPDATE users SET password_hash=$1 WHERE id=$2', [newHash, req.userId]);
     res.sendStatus(200);
@@ -201,17 +199,16 @@ api.post('/change-password', authenticateToken, async (req, res) => {
   }
 });
 
-// Вешаем все /api
+// вешаем роуты на /api
 app.use('/api', api);
 
-// Отдаём статику из папки public
+// отдаём статику
 app.use(express.static(path.join(__dirname, '../public')));
 
-// SPA-фоллбэк: ОБЯЗАТЕЛЬНО '/*', а не '*'!
-app.get('/*', (req, res) => {
+// SPA-фоллбэк — вот здесь **'*'**, а не `'/*'`
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-// Старт сервера
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`API слушает порт ${PORT}`));
