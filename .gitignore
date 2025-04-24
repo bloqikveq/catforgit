@@ -1,7 +1,15 @@
-backend\node_modules\
-backend\.env
-node_modules\
+# node.js deps
+/backend/node_modules/
+/node_modules/
+
+# environment
+/backend/.env
+
+# логи
 *.log
+
+# маковские и редакторские мусоры
 .DS_Store
 Thumbs.db
-.vscode\
+.vscode/
+
