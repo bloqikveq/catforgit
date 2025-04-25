@@ -1,11 +1,11 @@
 // js/auth.js
 document.addEventListener('DOMContentLoaded', () => {
-  const API_URL       = 'http://localhost:4000';
-  const loginForm     = document.getElementById('loginForm');
-  const registerForm  = document.getElementById('registerForm');
-  const showLoginBtn  = document.getElementById('showLogin');
-  const showRegBtn    = document.getElementById('showRegister');
-  const msgElem       = document.getElementById('authMessage');
+  const API_URL      = ''; // пусто = текущий хост, чтобы не было проблем при деплое
+  const loginForm    = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const showLoginBtn = document.getElementById('showLogin');
+  const showRegBtn   = document.getElementById('showRegister');
+  const msgElem      = document.getElementById('authMessage');
 
   // Переключение между формами
   function switchForm(isLogin) {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   showLoginBtn.addEventListener('click', () => switchForm(true));
   showRegBtn  .addEventListener('click', () => switchForm(false));
 
-  // — ЛОГИН —  
+  // — ЛОГИН —
   loginForm.addEventListener('submit', async e => {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value.trim();
@@ -93,9 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       msgElem.textContent = 'Ошибка при регистрации: ' + err.message;
     }
   });
-
-  // Обработчик «Забыли пароль?» теперь не нужен,
-  // так как ссылка ведёт на отдельную reset.html.
 });
+
 
 
