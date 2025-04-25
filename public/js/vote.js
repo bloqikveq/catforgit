@@ -1,9 +1,8 @@
 // js/vote.js
-
 document.addEventListener('DOMContentLoaded', () => {
   const forms   = document.querySelectorAll('.voteForm');
   const topList = document.getElementById('topList');
-  const API_URL = 'http://localhost:4000';  // адрес вашего Express-сервера
+  const API_URL = ''; // пусто = текущий хост
 
   // Расширения для картинок по идентификатору
   const exts = {
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     smiling:    'jpg'
   };
 
-  // Навешиваем обработчики на формы голосования
+  // Обработчик отправки голосов
   forms.forEach(form => {
     form.addEventListener('submit', async e => {
       e.preventDefault();
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const res = await fetch(`${API_URL}/api/vote`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type':  'application/json',
             'Authorization': 'Bearer ' + token
           },
           body: JSON.stringify({ meme_id, rating })
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // При загрузке страницы отрисовываем Топ-5, если контейнер есть
+  // Первичная отрисовка Топ-5
   if (topList) renderTop();
 
   async function renderTop() {
@@ -67,8 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const top = await res.json(); // [{ meme_id, avg_rating }, …]
 
       topList.innerHTML = top.map(({ meme_id, avg_rating }) => {
-        // приводим avg_rating к числу
-        const avg = parseFloat(avg_rating);
+        const avg   = parseFloat(avg_rating);
         const ext   = exts[meme_id] || 'jpg';
         const title = meme_id.charAt(0).toUpperCase() + meme_id.slice(1);
         return `
