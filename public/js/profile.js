@@ -1,23 +1,25 @@
 // js/profile.js
 document.addEventListener('DOMContentLoaded', () => {
-    const API     = 'http://localhost:4000';
+    const API     = '';
     const token   = localStorage.getItem('jwt');
     const email   = localStorage.getItem('currentUser');
     const msgElem = document.getElementById('changePwdMsg');
     const emailEl = document.getElementById('user-email');
   
-    // если не залогинен — редирект
+    // если не залогинен — редирект на страницу входа
     if (!token || !email) {
       return location.href = 'auth.html';
     }
   
-    // подставляем email
+    // отобразим email
     emailEl.textContent = email;
   
-    // обработка формы смены пароля
+    // Обработка формы смены пароля
     document.getElementById('changePwdForm').addEventListener('submit', async e => {
       e.preventDefault();
       msgElem.textContent = '';
+      msgElem.style.color = 'red';
+  
       const oldPassword = document.getElementById('oldPwd').value;
       const newPassword = document.getElementById('newPwd').value;
   
@@ -37,12 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
           e.target.reset();
         } else {
           const text = await res.text();
-          msgElem.style.color = 'red';
           msgElem.textContent = text || 'Ошибка при смене пароля';
         }
       } catch (err) {
         console.error(err);
-        msgElem.style.color = 'red';
         msgElem.textContent = 'Ошибка сети, попробуйте позже.';
       }
     });
