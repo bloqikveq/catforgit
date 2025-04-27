@@ -1,26 +1,22 @@
 // js/comment.js
 document.addEventListener('DOMContentLoaded', () => {
-  // ========== Настройка API_URL ==========
-  // Если фронт и бэк на одном домене, можно оставить ''
-  // Или явно указать, например 'https://your-backend.com'
+  // Если фронт и бэк на одном домене, оставляем пустую строку
   const API_URL = '';
 
   const token = localStorage.getItem('jwt');
 
-  // ---------------------------------------
+  //
   // 1) Глобальные комментарии (index.html)
-  // ---------------------------------------
+  //
   const globalForm = document.getElementById('commentForm');
   const globalList = document.getElementById('commentList');
 
   if (globalForm && globalList) {
-    // загрузка и рендеринг всех глобальных комментариев
     async function loadGlobal() {
       try {
         const res = await fetch(`${API_URL}/api/comments`);
         if (!res.ok) throw new Error(await res.text());
         const comments = await res.json();
-
         globalList.innerHTML = comments.map(c => {
           const date = new Date(c.created_at).toLocaleString('ru-RU', {
             day:   '2-digit',
@@ -45,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // отправка нового глобального комментария
     globalForm.addEventListener('submit', async e => {
       e.preventDefault();
       if (!token) {
@@ -77,29 +72,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // инициализация
     loadGlobal();
   }
 
-  // -------------------------------------------------
+  //
   // 2) Комментарии к конкретному мему (meme.html)
-  // -------------------------------------------------
+  //
   document.querySelectorAll('.comment-form').forEach(form => {
     const memeId = form.dataset.memeId;
-    // Пропускаем глобальную форму (у неё data-meme-id = "")
+    // data-meme-id у глобальной формы пуст, у локальных — настоящий id
     if (!memeId) return;
 
-    const block    = form.closest('.comments-block');
-    const list     = block.querySelector('.comment-list');
+    const list     = form.closest('.comments-block').querySelector('.comment-list');
     const textarea = form.querySelector('textarea');
 
-    // загрузка и рендеринг комментариев для данного мема
     async function loadForMeme() {
       try {
         const res = await fetch(`${API_URL}/api/comments/${memeId}`);
         if (!res.ok) throw new Error(await res.text());
         const comments = await res.json();
-
         list.innerHTML = comments.map(c => {
           const date = new Date(c.created_at).toLocaleString('ru-RU', {
             day:   '2-digit',
@@ -124,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // отправка нового комментария к этому мему
     form.addEventListener('submit', async e => {
       e.preventDefault();
       if (!token) {
@@ -155,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // инициализация
     loadForMeme();
   });
 });
