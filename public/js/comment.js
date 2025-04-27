@@ -1,20 +1,20 @@
 // js/comment.js
 document.addEventListener('DOMContentLoaded', () => {
   // ========== Настройка API_URL ==========
-  // Если фронт и бэк на одном домене, можно оставить ''
-  // или использовать window.location.origin, если бэк на том же хосте
-  const API_URL = ''; // e.g. 'http://localhost:4000' или ''
+  // Если фронт и бэк на одном домене, можно оставить ''.
+  // Или явно указать, например 'https://your-backend.com'
+  const API_URL = '';
 
   const token = localStorage.getItem('jwt');
 
-  // ------------------
+  // ---------------------------------------
   // 1) Глобальные комментарии (index.html)
-  // ------------------
+  // ---------------------------------------
   const globalForm = document.getElementById('commentForm');
   const globalList = document.getElementById('commentList');
 
   if (globalForm && globalList) {
-    // Загрузка и рендер всех комментариев
+    // функция загрузки списка глобальных комментариев
     async function loadGlobal() {
       try {
         const res = await fetch(`${API_URL}/api/comments`);
@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         globalList.innerHTML = comments.map(c => {
           const date = new Date(c.created_at).toLocaleString('ru-RU', {
-            day:    '2-digit',
-            month:  '2-digit',
-            year:   'numeric',
-            hour:    '2-digit',
-            minute:  '2-digit'
+            day:   '2-digit',
+            month: '2-digit',
+            year:  'numeric',
+            hour:   '2-digit',
+            minute: '2-digit'
           });
           return `
             <div class="comment">
@@ -40,54 +40,65 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
         }).join('');
       } catch (err) {
-        console.error(err);
+        console.error('Ошибка загрузки глобальных комментариев:', err);
         globalList.innerHTML = `<p class="error">Не удалось загрузить комментарии.</p>`;
       }
     }
 
-    // Отправка нового глобального комментария
+    // отправка нового глобального комментария
     globalForm.addEventListener('submit', async e => {
       e.preventDefault();
+
       if (!token) {
         alert('Пожалуйста, войдите, чтобы оставить комментарий.');
         return location.href = 'auth.html';
       }
+
       const textarea = document.getElementById('commentText');
       const content  = textarea.value.trim();
       if (!content) return;
 
+      // 1) Сначала POST
       try {
         const res = await fetch(`${API_URL}/api/comments`, {
-          method:  'POST',
+          method: 'POST',
           headers: {
             'Content-Type':  'application/json',
             'Authorization': 'Bearer ' + token
           },
           body: JSON.stringify({ meme_id: null, content })
         });
-        if (!res.ok) throw new Error(await res.text());
+        if (!res.ok) {
+          const msg = await res.text();
+          throw new Error(msg || res.statusText);
+        }
+        // успешно отправили — очистим поле:
         textarea.value = '';
-        await loadGlobal();
       } catch (err) {
-        console.error(err);
-        alert('Ошибка при отправке: ' + err.message);
+        console.error('Ошибка при отправке глобального комментария:', err);
+        return alert('Ошибка при отправке: ' + err.message);
       }
+
+      // 2) Перезагружаем список — ошибки здесь просто логируем
+      loadGlobal().catch(err => {
+        console.error('Не удалось обновить глобальные комментарии:', err);
+      });
     });
 
-    // Инициализация
+    // инициализируем
     loadGlobal();
   }
 
-  // ------------------
+  // -------------------------------------------------
   // 2) Комментарии к конкретному мему (meme.html)
-  // ------------------
+  // -------------------------------------------------
   document.querySelectorAll('.comment-form').forEach(form => {
     const memeId   = form.dataset.memeId;
     const block    = form.closest('.comments-block');
     const list     = block.querySelector('.comment-list');
     const textarea = form.querySelector('textarea');
 
-    // Загрузка и рендер комментариев для данного memeId
+    // загрузка комментариев для данного мема
     async function loadForMeme() {
       try {
         const res = await fetch(`${API_URL}/api/comments/${memeId}`);
@@ -96,11 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         list.innerHTML = comments.map(c => {
           const date = new Date(c.created_at).toLocaleString('ru-RU', {
-            day:    '2-digit',
-            month:  '2-digit',
-            year:   'numeric',
-            hour:    '2-digit',
-            minute:  '2-digit'
+            day:   '2-digit',
+            month: '2-digit',
+            year:  'numeric',
+            hour:   '2-digit',
+            minute: '2-digit'
           });
           return `
             <div class="comment">
@@ -113,40 +124,50 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
         }).join('');
       } catch (err) {
-        console.error(err);
+        console.error(`Ошибка загрузки комментариев для мема ${memeId}:`, err);
         list.innerHTML = `<p class="error">Не удалось загрузить комментарии.</p>`;
       }
     }
 
-    // Отправка комментария к этому мему
+    // отправка комментария к этому мему
     form.addEventListener('submit', async e => {
       e.preventDefault();
+
       if (!token) {
         alert('Пожалуйста, войдите, чтобы оставить комментарий.');
         return location.href = 'auth.html';
       }
+
       const content = textarea.value.trim();
       if (!content) return;
 
+      // 1) POST
       try {
         const res = await fetch(`${API_URL}/api/comments`, {
-          method:  'POST',
+          method: 'POST',
           headers: {
             'Content-Type':  'application/json',
             'Authorization': 'Bearer ' + token
           },
           body: JSON.stringify({ meme_id: memeId, content })
         });
-        if (!res.ok) throw new Error(await res.text());
+        if (!res.ok) {
+          const msg = await res.text();
+          throw new Error(msg || res.statusText);
+        }
         textarea.value = '';
-        await loadForMeme();
       } catch (err) {
-        console.error(err);
-        alert('Ошибка при отправке: ' + err.message);
+        console.error(`Ошибка при отправке комментария к мему ${memeId}:`, err);
+        return alert('Ошибка при отправке: ' + err.message);
       }
+
+      // 2) Обновляем локально — ошибки только логируем
+      loadForMeme().catch(err => {
+        console.error(`Не удалось обновить комментарии для мема ${memeId}:`, err);
+      });
     });
 
-    // Инициализация
+    // инициализация при загрузке страницы
     loadForMeme();
   });
 });
