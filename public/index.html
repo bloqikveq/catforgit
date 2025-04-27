@@ -17,7 +17,7 @@
       <a href="meme.html"    id="link-memes">Мемы</a>
       <a href="random.html"  id="link-random">Случайные гифки</a>
       <a href="contacts.html" id="link-contacts">Контакты</a>
-      <!-- Вот сюда main.js будет вставлять "Войти" или "<email> + Выйти" -->
+      <!-- main.js вставит сюда либо "Войти", либо "<email> + Выйти" -->
       <span id="nav-auth"></span>
     </nav>
   </header>
@@ -37,9 +37,9 @@
       <div class="comment-list" id="commentList">
         <!-- Заполняется js/comment.js через GET /api/comments -->
       </div>
-      <form id="commentForm"
-            class="comment-form"
-            data-meme-id="">
+      <!-- У глобальной формы убран класс comment-form,
+           чтобы она не пересекалась с формами на meme.html -->
+      <form id="commentForm" data-meme-id="">
         <textarea id="commentText"
                   placeholder="Ваш комментарий..."
                   required></textarea>
