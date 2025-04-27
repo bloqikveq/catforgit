@@ -276,3 +276,49 @@ footer {
 #map {
   margin-top: 20px;
 }
+/* ==== Глобальная форма комментариев ==== */
+.global-comment-form {
+  display: flex;
+  gap: 10px;               /* расстояние между полем и кнопкой */
+  align-items: flex-end;   /* выровнять кнопку по низу textarea */
+  margin-top: 20px;
+}
+
+.global-comment-input {
+  flex: 1;                         /* растягивается на всю ширину */
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;                /* по вертикали можно менять размер */
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: border-color 0.2s;
+}
+
+.global-comment-input:focus {
+  outline: none;
+  border-color: #6a11cb;           /* подсветка при фокусе */
+}
+
+.global-comment-btn {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.global-comment-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.global-comment-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+}
