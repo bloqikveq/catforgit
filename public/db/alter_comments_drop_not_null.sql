@@ -1,0 +1,2 @@
+ALTER TABLE comments
+  ALTER COLUMN meme_id DROP NOT NULL;

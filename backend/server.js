@@ -202,6 +202,9 @@ api.post('/change-password', authenticateToken, async (req, res) => {
 // вешаем роуты на /api
 app.use('/api', api);
 
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`API слушает порт ${PORT}`));
+
 // отдаём статику
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -209,6 +212,3 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
-
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`API слушает порт ${PORT}`));
