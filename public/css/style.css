@@ -5,17 +5,17 @@
   box-sizing: border-box;
 }
 
-/* Применяем единый системный шрифт ко всему документу */
 html {
+  /* Единый системный шрифт */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px; /* базовый размер */
+  font-size: 16px;
   line-height: 1.5;
   color: #333;
 }
 
 body {
   background:
-    linear-gradient(rgba(58, 102, 45, 0.5), rgba(26, 11, 11, 0.281)),
+    linear-gradient(rgba(58, 102, 45, 0.5), rgba(26, 11, 11, 0.28)),
     url('../img/bg-pattern.png') center/cover no-repeat;
 }
 
@@ -43,6 +43,7 @@ header {
   transition: transform .2s;
   margin-right: 12px;
 }
+
 .logo:hover img {
   transform: scale(1.05);
 }
@@ -53,6 +54,7 @@ header {
   color: #815c16;
   line-height: 1;
 }
+
 .logo-text:hover {
   color: #0077cc;
 }
@@ -63,6 +65,7 @@ nav a {
   color: #333;
   text-decoration: none;
 }
+
 nav a:hover {
   text-decoration: underline;
 }
@@ -80,7 +83,7 @@ main {
   margin: 20px 0;
 }
 
-/* Сетка мемов */
+/* ==== Сетка мемов ==== */
 .memes-grid {
   display: grid;
   gap: 20px;
@@ -94,21 +97,23 @@ main {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   transition: transform .2s;
 }
+
 .meme-card:hover {
   transform: scale(1.03);
 }
+
 .meme-card p {
   text-align: center;
   padding: 10px;
   font-weight: bold;
 }
 
-/* Контейнер изображения */
 .img-container {
   width: 100%;
   height: 250px;
   overflow: hidden;
 }
+
 .img-container img,
 .img-container video {
   width: 100%;
@@ -116,7 +121,7 @@ main {
   object-fit: cover;
 }
 
-/* Форма голосования */
+/* ==== Форма голосования ==== */
 .vote-form {
   margin-top: 40px;
   background: #fff;
@@ -124,25 +129,38 @@ main {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+
 .vote-form label {
   margin-right: 10px;
 }
 
-/* Кнопка "Наверх" */
+/* ==== Кнопка "Наверх" ==== */
 #toTop {
   position: fixed;
   bottom: 20px;
   right: 20px;
   display: none;
+  width: 48px;
+  height: 48px;
   background: #0077cc;
   color: #fff;
   border: none;
-  padding: 10px;
   border-radius: 50%;
+  font-size: 24px;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background .2s, transform .2s;
 }
 
-/* Футер */
+#toTop:hover {
+  background: #005fa3;
+  transform: scale(1.1);
+}
+
+/* ==== Футер ==== */
 footer {
   text-align: center;
   padding: 20px 0;
@@ -150,7 +168,7 @@ footer {
   margin-top: 40px;
 }
 
-/* Адаптив */
+/* ==== Адаптив ==== */
 @media(max-width: 600px) {
   .img-container {
     height: 180px;
@@ -165,20 +183,23 @@ footer {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+
 .meme-info {
   margin: 15px 0;
 }
+
 .meme-info summary {
   cursor: pointer;
   font-weight: bold;
 }
 
-/* Контейнер для случайного мема */
+/* ==== Контейнер случайного мема ==== */
 .random-meme-container {
   text-align: center;
   margin: 20px auto;
   max-width: 800px;
 }
+
 .random-meme-container img {
   width: 100%;
   height: auto;
@@ -187,17 +208,19 @@ footer {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* ==== Блоки комментариев ==== */
+/* ==== Блок комментариев (глобальный + локальный) ==== */
 .comments-block {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
-  margin-top: 30px;
+  margin: 40px auto; /* увеличенный отступ сверху/снизу */
+  max-width: 900px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 .comments-block h2 {
   margin-top: 0;
-  font-size: 20px;
+  font-size: 22px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 8px;
 }
@@ -212,6 +235,7 @@ footer {
   padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
+
 .comment:last-child {
   border-bottom: none;
 }
@@ -234,17 +258,21 @@ footer {
   display: flex;
   flex-direction: column;
 }
+
 .comment-form textarea {
   resize: vertical;
   min-height: 60px;
   padding: 8px;
-  font-family: inherit; /* наследуем глобальный system-ui */
+  font-family: inherit; /* Наследует системный шрифт */
   margin-bottom: 10px;
 }
+
 .comment-form button {
   align-self: flex-end;
   padding: 6px 16px;
 }
+
+/* ==== Карта (на странице contacts.html) ==== */
 #map {
-  margin-top: 20px;  /* отступ сверху, чтобы отделить от текста */
+  margin-top: 20px;
 }
