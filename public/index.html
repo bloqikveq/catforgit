@@ -42,12 +42,18 @@
       </div>
       <!-- У глобальной формы убран класс comment-form,
            чтобы она не пересекалась с формами на meme.html -->
-      <form id="commentForm" data-meme-id="">
-        <textarea id="commentText"
-                  placeholder="Ваш комментарий..."
-                  required></textarea>
-        <button type="submit">Отправить</button>
-      </form>
+           <form id="commentForm"
+           class="global-comment-form"
+           data-meme-id="">
+       <textarea id="commentText"
+                 class="global-comment-input"
+                 placeholder="Ваш комментарий..."
+                 required></textarea>
+       <button type="submit"
+               class="global-comment-btn">
+         Отправить
+       </button>
+     </form>
     </section>
   </main>
 
