@@ -3,15 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Сброс пароля</title>
+  <title>Сброс пароля — Viby Kitties</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    main { max-width: 400px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    form label { display: block; margin: 10px 0; }
-    form input { width: 100%; padding: 8px; }
-    form button { margin-top: 15px; padding: 10px 20px; }
-    .back-link { display: inline-block; margin-top: 20px; text-decoration: none; color: #0077cc; }
-    .back-link:hover { text-decoration: underline; }
+    main {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-family: system-ui;
+    }
+    form label {
+      display: block;
+      margin: 10px 0;
+    }
+    form input {
+      width: 100%;
+      padding: 8px;
+    }
+    form button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #0077cc;
+      cursor: pointer;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    #resetMsg {
+      margin-top: 15px;
+      min-height: 1.2em;
+    }
   </style>
 </head>
 <body>
@@ -30,34 +60,42 @@
     </form>
     <p id="resetMsg"></p>
 
-    <button onclick="location.href='auth.html'" style="margin-top:20px;padding:8px 16px;">
-        ← Назад к входу
-      </button>      
+    <a class="back-link" href="auth.html">← Назад к входу</a>
   </main>
 
   <script>
-  document.getElementById('resetForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const email = document.getElementById('resetEmail').value.trim();
-    const newPassword = document.getElementById('resetPassword').value;
-    const msg = document.getElementById('resetMsg');
-    try {
-      const res = await fetch('', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ email, newPassword })
-      });
-      if (res.ok) {
-        msg.textContent = 'Пароль успешно изменён!';
-      } else {
-        msg.textContent = await res.text();
+    document.getElementById('resetForm').addEventListener('submit', async e => {
+      e.preventDefault();
+
+      // собираем данные
+      const email = document.getElementById('resetEmail').value.trim();
+      const newPassword = document.getElementById('resetPassword').value;
+      const msg = document.getElementById('resetMsg');
+
+      // POST на эндпоинт /api/reset-password
+      try {
+        const res = await fetch('/api/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, newPassword })
+        });
+
+        if (res.ok) {
+          msg.style.color = 'green';
+          msg.textContent = 'Пароль успешно изменён! Теперь можете войти с новым паролем.';
+        } else {
+          const text = await res.text();
+          msg.style.color = 'red';
+          msg.textContent = text || 'Не удалось сбросить пароль';
+        }
+      } catch (err) {
+        console.error(err);
+        msg.style.color = 'red';
+        msg.textContent = 'Ошибка сети, попробуйте позже.';
       }
-    } catch (err) {
-      console.error(err);
-      msg.textContent = 'Ошибка, попробуйте позже.';
-    }
-  });
+    });
   </script>
 </body>
 </html>
+
 
