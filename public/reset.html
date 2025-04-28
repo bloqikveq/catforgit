@@ -42,7 +42,7 @@
     const newPassword = document.getElementById('resetPassword').value;
     const msg = document.getElementById('resetMsg');
     try {
-      const res = await fetch('http://localhost:4000/api/reset-password', {
+      const res = await fetch('', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({ email, newPassword })
