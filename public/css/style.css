@@ -173,6 +173,10 @@ footer {
   .img-container {
     height: 180px;
   }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* ==== Страница подробностей мема ==== */
